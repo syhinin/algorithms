@@ -31,7 +31,6 @@ function bestPlanet(solarSystem, maxSize) {
         }
     }
 
-
   }
   
    if(!!bestPlanet){
