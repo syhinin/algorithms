@@ -97,9 +97,8 @@ class LinkedList {
       } else {
         currentNode = currentNode.next
       }
-
-      return null
     }
+    return null
   }
 
   // O(n)
@@ -129,7 +128,7 @@ class LinkedList {
       }
     }
 
-    if (this.tail.value === value) {
+    if (this.tail?.value === value) {
       this.tail = currentNode
     }
 
@@ -137,10 +136,10 @@ class LinkedList {
   }
 }
 
-const list = new LinkedList()
+// const list = new LinkedList()
 
-list.append('a').append('b').append('c')
+// list.append('a').append('b').append('c')
 
-list.prepend('-a').prepend('-b')
+// list.prepend('-a').prepend('-b')
 
-console.log(list.toString())
+// console.log(list.toString())
