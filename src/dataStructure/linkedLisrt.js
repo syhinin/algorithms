@@ -1,84 +1,146 @@
-var NodeElem = /** @class */ (function () {
-    function NodeElem(value, next) {
-        this.value = value;
-        if (next) {
-            this.next = next;
-        }
+class Node {
+  constructor(value, next = null) {
+    this.value = value
+    this.next = next
+  }
+
+  toString() {
+    return `${this.value}`
+  }
+}
+
+class LinkedList {
+  constructor() {
+    this.head = null
+    this.tail = null
+    this.length = 0
+  }
+  // O(1)
+  append(value) {
+    const newNode = new Node(value)
+
+    if (!this.head || !this.tail) {
+      this.head = newNode
+      this.tail = newNode
+
+      return this
     }
-    return NodeElem;
-}());
-var LinkedList = /** @class */ (function () {
-    function LinkedList() {
-        this.length = 0;
+
+    this.tail.next = newNode
+    this.tail = newNode
+
+    return this
+  }
+
+  // O(1)
+  prepend(value) {
+    const newNode = new Node(value, this.head)
+
+    this.head = newNode
+
+    if (!this.tail) {
+      this.tail = newNode
     }
-    LinkedList.prototype.add = function (value) {
-        this.head = new NodeElem(value, this.head);
-        this.length + 1;
-        return this;
-    };
-    LinkedList.prototype.getNode = function (index) {
-        if (index >= 0 && index <= this.length) {
-            var item = this.head;
-            for (var i = 0; i < index; i++) {
-                item = item.next;
-            }
-            return item;
+    return this
+  }
+
+  // O(n)
+  insertAfter(value, prevNode) {
+    if (prevValue === null) {
+      return this
+    }
+
+    const newNode = new Node(value)
+
+    newNode.next = prevNode.next
+    prevNode.next = newNode
+
+    if (newNode.next === null) {
+      this.tail = newNode
+    }
+
+    return this
+  }
+
+  // O(n)
+  toArray() {
+    const nodes = []
+
+    let currentNode = this.head
+
+    while (currentNode) {
+      nodes.push(currentNode.value)
+      currentNode = currentNode.next
+    }
+
+    return nodes
+  }
+
+  // O(n)
+  toString() {
+    return this.toArray()
+      .map(node => node.toString())
+      .toString()
+  }
+
+  // O(n)
+  find(value) {
+    if (!this.head) {
+      return null
+    }
+
+    let currentNode = this.head
+
+    while (currentNode) {
+      if (value === currentNode.value) {
+        return currentNode
+      } else {
+        currentNode = currentNode.next
+      }
+
+      return null
+    }
+  }
+
+  // O(n)
+  delete(value) {
+    if (!this.head) {
+      return null
+    }
+
+    let deletedNode = null
+
+    while (this.head && this.head.value === value) {
+      deletedNode = this.head
+      this.head = this.head.next
+    }
+
+    let currentNode = this.head
+
+    if (currentNode !== null) {
+      while (currentNode.next) {
+        if (currentNode.next.value === value) {
+          deletedNode = currentNode.next
+
+          currentNode.next = currentNode.next.next
+        } else {
+          currentNode = currentNode.next
         }
-    };
-    LinkedList.prototype.get = function (value, index) {
-        if (index === 0) {
-            this.add(value);
-        }
-        else {
-            var prevItem = this.getNode(--index);
-            if (prevItem) {
-                var newItem = new NodeElem(value, prevItem.next);
-                prevItem.next = newItem;
-                this.length++;
-            }
-        }
-        return this;
-    };
-    LinkedList.prototype.update = function (value, index) {
-        var item = this.getNode(index);
-        if (item) {
-            item.value = value;
-        }
-        return this;
-    };
-    LinkedList.prototype.remove = function (index) {
-        if (index === 0) {
-            this.head = undefined;
-            this.length = 0;
-        }
-        else {
-            var prevItem = this.getNode(--index);
-            if (prevItem) {
-                prevItem.next = prevItem.next ? prevItem.next.next : undefined;
-                this.length -= 1;
-            }
-        }
-        return this;
-    };
-    LinkedList.prototype.clear = function () {
-        return this.remove(0);
-    };
-    LinkedList.prototype.printItems = function (item) {
-        if (item) {
-            console.log(item.value);
-            return this.printItems(item.next);
-        }
-        return undefined;
-    };
-    LinkedList.prototype.print = function () {
-        this.printItems(this.head);
-    };
-    return LinkedList;
-}());
-var list = new LinkedList();
-list.add(1);
-list.add(2);
-list.add(3);
-list.print();
-list.update(2, 4);
-list.print();
+      }
+    }
+
+    if (this.tail.value === value) {
+      this.tail = currentNode
+    }
+
+    return deletedNode
+  }
+}
+
+const list = new LinkedList()
+
+list.append('a').append('b').append('c')
+
+list.prepend('-a').prepend('-b')
+
+console.log(list.toString())
