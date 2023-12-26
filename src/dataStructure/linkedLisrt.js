@@ -46,7 +46,7 @@ class LinkedList {
 
   // O(n)
   insertAfter(value, prevNode) {
-    if (prevValue === null) {
+    if (prevNode === null) {
       return this
     }
 
