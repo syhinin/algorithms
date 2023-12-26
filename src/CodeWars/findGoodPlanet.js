@@ -1,6 +1,6 @@
 const REQUIRED_ELEMENTS = ['H', 'C', 'N', 'O', 'P', 'Ca']
 
-function bestPlanet(solarSystem, maxSize) {
+export function bestPlanet(solarSystem, maxSize) {
   let goodPlanets = {}
   let bestPlanet = ''
 

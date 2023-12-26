@@ -9,7 +9,7 @@ class Node {
   }
 }
 
-class LinkedList {
+export class LinkedList {
   constructor() {
     this.head = null
     this.tail = null
@@ -135,11 +135,3 @@ class LinkedList {
     return deletedNode
   }
 }
-
-// const list = new LinkedList()
-
-// list.append('a').append('b').append('c')
-
-// list.prepend('-a').prepend('-b')
-
-// console.log(list.toString())

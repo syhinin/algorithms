@@ -7,7 +7,7 @@ function get64binary(int) {
       .padStart(64, '1')
 }
 
-function countBits(n) {
+export function countBits(n) {
   let total = 0
 
   const binaryNumber = get64binary(n)

@@ -1,7 +1,7 @@
 const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
 let counter = 0
 
-const binarySearch = (array, number) => {
+export const binarySearch = (array, number) => {
   let left = 0
   let right = array.length - 1
   let mid
@@ -21,6 +21,3 @@ const binarySearch = (array, number) => {
 
   return -1
 }
-
-console.log(binarySearch(arr, 15))
-console.log(counter)
