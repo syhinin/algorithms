@@ -109,7 +109,7 @@ export class LinkedList {
 
     let deletedNode = null
 
-    while (this.head && this.head.value === value) {
+    while (this.head?.value === value) {
       deletedNode = this.head
       this.head = this.head.next
     }
